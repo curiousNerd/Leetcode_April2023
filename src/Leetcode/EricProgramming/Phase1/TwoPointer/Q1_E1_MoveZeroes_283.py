@@ -62,3 +62,52 @@ class Solution:
     #       - Issue 2 : left can't be left unchecked
     #
     # #
+
+    ### New solution
+
+    ##
+    # The idea for this solution remains the same.
+    #   - Use two pointers approach
+    #       - left : points to first 0 element
+    #       - right : points to next non-zero element
+    #   - When above condition is met :
+    #       - #swap
+    #       - increment pointers
+    # Caution :
+    #   - Left and Right pointers should be in sync
+    #       - left should always be smaller than right
+    #
+    # Approach :
+    # Based on this we can create a rough table on how the pointers should be updated
+    #       [L] [R] -> Opr.
+    #        0  !0  -> Swap , L+ R+
+    #        0   0  -> R+
+    #       !0   0  -> L+ R+
+    #       !0  !0  -> L+ R+
+    # this shows :
+    #   - Right is always incremented irrespective of the condition
+    #   - We only need to manage left
+    # #
+
+    def moveZeroes(self, nums: List[int]) -> None:
+
+        left = 0
+        right = 0
+        n = len(nums)
+
+        while right < n:
+
+            if nums[left] == 0 and nums[right] != 0:
+                #swap
+                nums[left] = nums[right]
+                nums[right] = 0
+
+                left += 1
+
+            elif nums[left] != 0:
+                left += 1
+
+            right += 1
+
+    ## Time Complexity : O(n)
+    ## Space Complexity : O(1)
