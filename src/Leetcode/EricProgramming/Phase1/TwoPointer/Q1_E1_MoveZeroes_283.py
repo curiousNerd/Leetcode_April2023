@@ -89,7 +89,7 @@ class Solution:
     #   - We only need to manage left
     # #
 
-    def moveZeroes(self, nums: List[int]) -> None:
+    def moveZeroes_workingSoln(self, nums: List[int]) -> None:
 
         left = 0
         right = 0
