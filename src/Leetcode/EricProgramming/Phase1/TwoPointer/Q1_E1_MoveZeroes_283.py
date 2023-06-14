@@ -111,3 +111,41 @@ class Solution:
 
     ## Time Complexity : O(n)
     ## Space Complexity : O(1)
+
+    def moveZeroes_workingSoln_AGAIN(self, nums: List[int]) -> None:
+
+        '''
+        L | R
+        0 | 1
+
+        [L] | [R]
+         0  | 0   -> R++
+         0  | 1   -> swap, L++, R++
+         1  | 0   -> L++, R++
+         1  | 1   -> L++, R++
+        '''
+
+        ## initialization
+        n = len(nums)
+        left = 0
+        right = 1
+
+        ## base condition
+        if len(nums) == 0:
+            return
+
+        ## code
+        while right < n :
+
+            if left != 0:
+                left += 1
+
+            elif nums[left] == 0 and nums[right] != 0:
+                nums[left] = nums[right]
+                nums[right] = 0
+                left += 1
+
+            right += 1
+
+        ## Time Complexity : O(n)
+        ## Space Complexity : O(1)
