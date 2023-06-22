@@ -57,3 +57,54 @@ class Solution:
 
     ## Time Complexity : O(n)
     ## Space Complexity : O(1)
+
+class Solution:
+
+    '''
+
+    - Question :
+        * Remove all the duplicates from the array
+          and return the count of elements which are unique such that the array has all these unique elements till index count -1
+
+    - Assumptions :
+        * elements present beyond the index count do not matter
+
+    - Solution :
+        * Optimal Solution
+            - Use two pointers left and right
+                - left : track the first occurrence of a number
+                - right : tracks the next unique number
+            - conditions
+                - [left] == [right] : right+1
+                - [left] != [right] : left+1, swap, right+1
+            - return
+                - left + 1 : Because we need to return the count of unique elements in the array and not the index till which we have unique elements
+
+        * Time Complexity : O(n)
+        * Space Complexity : O(1)
+
+
+    '''
+
+    def removeDuplicates_again(self, nums: List[int])-> int:
+
+        ## initialization
+        left = 0
+        right = 0
+        n = len(nums)
+
+        ## base condition
+        if n == 0:
+            return
+
+        ## code
+        while right < n:
+
+            if nums[left] != nums[right]:
+                left += 1
+                nums[left] = nums[right]
+
+            right += 1
+
+        return left + 1
+

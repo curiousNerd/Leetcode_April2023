@@ -118,6 +118,9 @@ class Solution:
         L | R
         0 | 1
 
+        L --> should point at first zero element
+        R --> should point at next non-zero element
+
         [L] | [R]
          0  | 0   -> R++
          0  | 1   -> swap, L++, R++
