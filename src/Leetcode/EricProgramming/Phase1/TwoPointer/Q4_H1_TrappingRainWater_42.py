@@ -54,3 +54,58 @@ class Solution:
     ## Time Complexity : O(n^2)
     ## Space Complexity
 
+
+'''
+    * Question : 
+        - Given an array of heights - find the maximum water that can be held between any two walls
+        
+    * Assumptions : 
+        - There can be no water held before first and last index
+        
+    * Solution:
+        - We can take two pointer approach here
+            - left : traverse the array from left
+            - right : traverse the array from right
+            - for each iteration
+                - calculate the water that can be held : area 
+                - To calculate the area
+                    - distance : right - left
+                    - min_height : min([left],[right])
+                    
+                - Recalculate the max_area
+                
+    * Time Complexity : O(n)
+    * Space Complexity : O(1)
+'''
+class Solution:
+    def trap_optimize(self, heights: List[int]) -> int:
+
+        ##initialization
+        left = 0
+        n = len(heights)
+        right = n - 1
+        max_area = 0
+
+
+        ## base condition
+        if len(heights) < 2:
+            return
+
+        ## code
+        while left < right:
+
+            # calculate area
+            distance = right - left
+            min_height = min(heights[left], heights[right])
+            area = distance * min_height
+
+            ## update max_area
+            max_area = max(area, max_area)
+
+            ## update pointers
+            if heights[left] < heights[right]:
+                left += 1
+            else:
+                right -= 1
+
+        return max_area
